@@ -31,3 +31,15 @@ y = df["price_USD"]
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
+
+# 7. Convert scaled features back to a dataframe
+X_scaled_df = pd.DataFrame(X_scaled, columns=X.columns)
+
+# 8. Combine features and target again
+processed_df = pd.concat([X_scaled_df, y], axis=1)
+
+# 9. Save the preprocessed dataset
+processed_df.to_csv("preprocessed_mobile_data.csv", index=False)
+
+print(" Data preprocessing complete. File saved as preprocessed_mobile_data.csv")
+
