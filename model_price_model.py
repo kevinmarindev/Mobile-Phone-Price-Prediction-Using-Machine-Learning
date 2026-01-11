@@ -43,3 +43,28 @@ processed_df.to_csv("preprocessed_mobile_data.csv", index=False)
 
 print(" Data preprocessing complete. File saved as preprocessed_mobile_data.csv")
 
+# B2  Build the algorithm
+####################################################
+
+
+# Create the model
+model = RandomForestRegressor(random_state=7)
+
+print("Random forest regressor model created.")
+
+
+
+
+# B3 Train the model
+######################################################
+
+print("Dataset shape:", df.shape)
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=7
+)
+
+# Train the model
+model.fit(X_train, y_train)
+
+print("Model training complete.")
