@@ -68,3 +68,20 @@ X_train, X_test, y_train, y_test = train_test_split(
 model.fit(X_train, y_train)
 
 print("Model training complete.")
+
+# B4 Evaluate the model's accuracy
+#######################################################
+
+# make predictions on the test data
+predictions = model.predict(X_test)
+
+# calculate evaluation metrics
+r2 = r2_score(y_test, predictions)
+mse = mean_squared_error(y_test, predictions)
+mae = mean_absolute_error(y_test, predictions)
+
+print("Model Evaluation Results:")
+print("R2 Score:", r2)
+print("Mean Squared Error:", mse)
+print("Mean Absolute Error:", mae)
+
