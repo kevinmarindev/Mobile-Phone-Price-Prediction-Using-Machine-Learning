@@ -85,3 +85,44 @@ print("R2 Score:", r2)
 print("Mean Squared Error:", mse)
 print("Mean Absolute Error:", mae)
 
+
+
+# B5  Cross-validation
+#######################################################
+
+# Apply cross validation
+cv_scores = cross_val_score(model, X_scaled, y, cv=5, scoring="r2")
+
+print("\nCross Validation Results:")
+print("R2 scores for each fold:", cv_scores)
+print("Average R2 score:", cv_scores.mean())
+
+
+
+
+# B6 - Hyperparameter Tuning
+
+from sklearn.model_selection import GridSearchCV
+
+
+param_grid = {
+    "n_estimators": [50, 100, 200],
+    "max_depth": [None, 10, 20],
+    "min_samples_split": [2, 5]
+}
+
+# Create grid search
+grid_search = GridSearchCV(
+    RandomForestRegressor(random_state=7),
+    param_grid,
+    cv=5,
+    scoring="r2"
+)
+
+# Train the grid search
+grid_search.fit(X_train, y_train)
+
+best_model = grid_search.best_estimator_
+
+print("\nHyperparameter results:")
+print("Best params:", grid_search.best_params_)
